@@ -1,6 +1,6 @@
 package com.jornal.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,11 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Entity(name = "noticia")
 public class Noticia {
@@ -33,16 +28,14 @@ public class Noticia {
 	private String texto;
 	
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
-	private Date data;
+	private LocalDate data;
 	
 	@ManyToOne
-	@JoinColumn(name = "jornalista_id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Usuario jornalista;
+	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
+	private Usuario usuario;
 	
 	@ManyToOne
-	@JoinColumn(name = "secao_id")
+	@JoinColumn(name = "secao_id", referencedColumnName = "id")
 	private Secao secao;
 	
 	public long getId() {
@@ -77,11 +70,27 @@ public class Noticia {
 		this.texto = texto;
 	}
 
-	public Date getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(LocalDate data) {
 		this.data = data;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Secao getSecao() {
+		return secao;
+	}
+
+	public void setSecao(Secao secao) {
+		this.secao = secao;
 	}
 }

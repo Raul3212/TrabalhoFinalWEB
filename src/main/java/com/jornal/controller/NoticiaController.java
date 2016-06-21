@@ -25,7 +25,7 @@ public class NoticiaController {
 		model.addAttribute("noticia", noticia);
 		if(session.getAttribute("usuario") != null){
 			Usuario usuario = (Usuario)session.getAttribute("usuario");
-			if(usuario.getTipo() == 1)
+			if(usuario.getTipo() == Usuario.LEITOR)
 				return "leitor/noticia";
 		}
 			
@@ -38,7 +38,7 @@ public class NoticiaController {
 		model.addAttribute("noticias", noticias);
 		if(session.getAttribute("usuario") != null){
 			Usuario usuario = (Usuario)session.getAttribute("usuario");
-			if(usuario.getTipo() == 1)
+			if(usuario.getTipo() == Usuario.LEITOR)
 				return "leitor/noticia";
 		}
 		return "home";

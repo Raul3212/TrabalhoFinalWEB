@@ -1,10 +1,15 @@
 package com.jornal.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity(name = "secao")
 public class Secao {
@@ -20,6 +25,12 @@ public class Secao {
 	@Column(nullable = false)
 	private String descricao;
 
+	@OneToMany(mappedBy = "secao", 
+			targetEntity = Noticia.class,
+			fetch = FetchType.EAGER,
+			cascade = CascadeType.ALL)
+	private Set<Noticia> noticias;
+	
 	public long getId() {
 		return id;
 	}
@@ -42,6 +53,14 @@ public class Secao {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Set<Noticia> getNoticias() {
+		return noticias;
+	}
+
+	public void setNoticias(Set<Noticia> noticias) {
+		this.noticias = noticias;
 	}
 	
 }

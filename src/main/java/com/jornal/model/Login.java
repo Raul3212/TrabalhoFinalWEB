@@ -21,8 +21,8 @@ public class Login {
 	public int getTipo() {
 		return tipo;
 	}
-	public void setTipo(int tipoLogin) {
-		this.tipo = tipoLogin;
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
 	}
 	
 }

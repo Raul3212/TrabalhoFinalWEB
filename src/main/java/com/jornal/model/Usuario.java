@@ -1,14 +1,23 @@
 package com.jornal.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity(name = "usuario")
 public class Usuario {
-
+	
+	public static int LEITOR = 1;
+	public static int JORNALISTA = 2;
+	public static int EDITOR = 3;
+	
 	@Id
 	@Column(nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,6 +37,18 @@ public class Usuario {
 	
 	@Column(nullable = false)
 	private int tipo;
+	
+	@OneToMany(mappedBy = "usuario", 
+			targetEntity = Noticia.class,
+			fetch = FetchType.EAGER,
+			cascade = CascadeType.ALL)
+	private Set<Noticia> noticias;
+	
+	@OneToMany(mappedBy = "usuario",
+			targetEntity = Comentario.class,
+			fetch = FetchType.EAGER,
+			cascade = CascadeType.ALL)
+	private Set<Comentario> comentarios;
 	
 	public long getId() {
 		return id;
@@ -75,6 +96,22 @@ public class Usuario {
 
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
+	}
+
+	public Set<Noticia> getNoticias() {
+		return noticias;
+	}
+
+	public void setNoticias(Set<Noticia> noticias) {
+		this.noticias = noticias;
+	}
+
+	public Set<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(Set<Comentario> comentarios) {
+		this.comentarios = comentarios;
 	}
 	
 }
