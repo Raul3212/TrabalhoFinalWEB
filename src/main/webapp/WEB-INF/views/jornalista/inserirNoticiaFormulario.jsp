@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -16,38 +17,52 @@
     <div class="top-bar">
 	  <div class="top-bar-left">
 	    <ul class="dropdown menu" data-dropdown-menu>
-	      <li class="menu-text">QNews</li>
-	      <li><a href="/" title="Home">Home</a></li>
+	      <li class="menu-text">${usuario.nome}</li>
 	      <c:forEach var="secao" items="${secoes}">
-	      	<li><a href="listarPorSecao?secaoId=${secao.id}" title="${secao.descricao}">${secao.titulo}</a></li>
+	      	<li><a href="#" title="${secao.descricao}">${secao.titulo}</a></li>
 	      </c:forEach>
 	    </ul>
 	  </div>
 	  <div class="top-bar-right">
 	    <ul class="menu">
-	      <li><a href="loginFormulario">Entrar</a></li>
+	      <li><a href="gerenciarNoticias">Gerenciar Notícias</a></li>
+	      <li><a href="efetuarLogout">Sair</a></li>
 	    </ul>
 	  </div>
 	</div>
-    
-    <div class="row">
+	
+	<div class="row">
   		<div class="medium-12 column">
-  			<div class="callout clearfix">
-			 	<h2><b>${noticia.titulo}</b></h2><br/>
-			 	<i>${noticia.subtitulo}</i><br/>
-			 	<i>${noticia.data}</i><br>
-			 	<p>${noticia.texto}</p><br>
-			 	<hr/>
-			 	<c:forEach var = "comentario" items="${comentarios}">
-			 		<b>${comentario.usuario.nome} - ${comentario.usuario.email}</b>
-			 		<p>${comentario.texto}</p>	
-			 	</c:forEach>
-			 	<hr/>
-			 	<p>Entre para comentar.</p>	
-			</div>
+			<form method="post" action="cadastrarNoticia">
+				<label>Seção
+					<select name="secaoId">
+						<c:forEach var="secao" items="${secoes}">
+							<option value="${secao.id}">${secao.titulo}</option>
+						</c:forEach>
+					</select>
+				</label>
+				<label>Título
+					<input type="text" name="titulo" />
+				</label>
+				<br/>
+				<label>Subtítulo
+					<input type="text" name="subtitulo" />
+				</label>
+				<br/>
+				<label>Texto
+					<textarea name="texto" rows="15"></textarea>
+				</label>
+				<br/>
+				<input type="hidden" value="<%=LocalDate.now().toString()%>" name="data" />
+				<input type="hidden" value="${usuario.id}" name="usuarioId"/>
+				<label>
+					<input class="success buttom" type="submit" value="Cadastrar">
+				</label>
+			</form>
+			
 		</div>
-  	</div>
-    
+	</div>
+	
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>

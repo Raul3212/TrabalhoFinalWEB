@@ -16,18 +16,15 @@
     <div class="top-bar">
 	  <div class="top-bar-left">
 	    <ul class="dropdown menu" data-dropdown-menu>
-	      <li class="menu-text">QNews</li>
-	      <li><a href="/" title="Home">Home</a></li>
+	      <li class="menu-text">${usuario.nome}</li>
 	      <c:forEach var="secao" items="${secoes}">
-	      	<li><a href="#" title="${secao.descricao}">${secao.titulo}</a></li>
+	      	<li><a href="listarPorSecao?secaoId=${secao.id}" title="${secao.descricao}">${secao.titulo}</a></li>
 	      </c:forEach>
 	    </ul>
 	  </div>
 	  <div class="top-bar-right">
 	    <ul class="menu">
-	      <li><input type="search" placeholder="Buscar"></li>
-	      <li><button type="button" class="button">Buscar</button></li>
-	      <li><a href="loginFormulario">Entrar</a></li>
+	      <li><a href="efetuarLogout">Sair</a></li>
 	    </ul>
 	  </div>
 	</div>
@@ -37,8 +34,23 @@
   			<div class="callout clearfix">
 			 	<h2><b>${noticia.titulo}</b></h2><br/>
 			 	<i>${noticia.subtitulo}</i><br/>
+			 	<i>${noticia.data}</i><br>
 			 	<p>${noticia.texto}</p><br>
-			 	<i>${noticia.data}</i><br>	
+			 	<hr/>
+			 	<c:forEach var = "comentario" items="${comentarios}">
+			 		<b>${comentario.usuario.nome} - ${comentario.usuario.email}</b>
+			 		<p>${comentario.texto}</p>	
+			 	</c:forEach>
+			 	<hr/>
+			 	<form method="post" action="publicarComentario">
+			 		<b>Comente:</b>
+			 		<br/>
+			 		<textarea name="texto" rows="5" cols="10"></textarea>
+			 		<input type="hidden" name="noticiaId" value="${noticia.id}"/>
+			 		<input type="hidden" name="usuarioId" value="${usuario.id}"> 
+			 		<input type="submit" value="Enviar">
+			 	</form>
+			 		
 			</div>
 		</div>
   	</div>

@@ -1,5 +1,7 @@
 package com.jornal.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,6 +46,13 @@ public class UsuarioJornalistaController {
 	public String removerJornalista(long id){
 		usuarioDao.delete(id);
 		return "redirect:gerenciarJornalistas";
+	}
+	
+	@RequestMapping("/gerenciarNoticias")
+	public String gerenciarNoticias(HttpSession session, Model model){
+		Usuario usuario = (Usuario)session.getAttribute("usuario");
+		model.addAttribute("noticias", usuario.getNoticias());
+		return "jornalista/minhasNoticias";
 	}
 	
 }

@@ -21,7 +21,6 @@
 	  </div>
 	  <div class="top-bar-right">
 	    <ul class="menu">
-	      <li><input type="search" placeholder="Buscar"></li>
 	      <li><button type="button" class="button">Buscar</button></li>
 	      <li><a href="loginFormulario">Entrar</a></li>
 	    </ul>

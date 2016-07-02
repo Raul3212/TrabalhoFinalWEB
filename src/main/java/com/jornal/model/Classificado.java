@@ -17,7 +17,7 @@ public class Classificado {
 	@Id
 	@Column(nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	@Column(nullable = false)
 	private String titulo;
@@ -33,10 +33,9 @@ public class Classificado {
 	
 	private double melhorOferta;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
+	@Temporal(TemporalType.DATE)
 	private Date dataOferta;
-
-	//Referenciar usuario
 	
 	public long getId() {
 		return id;

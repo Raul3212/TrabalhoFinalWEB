@@ -24,9 +24,8 @@
 	  </div>
 	  <div class="top-bar-right">
 	    <ul class="menu">
-	      <li><input type="search" placeholder="Buscar"></li>
-	      <li><button type="button" class="button">Buscar</button></li>
-	      <li><a href="efetuarLogout">Sair</a></li>
+	    	<li><a href="#">Gerenciar Classificados</a></li>
+	    	<li><a href="efetuarLogout">Sair</a></li>
 	    </ul>
 	  </div>
 	</div>

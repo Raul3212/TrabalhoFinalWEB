@@ -1,23 +1,21 @@
 package com.jornal.model;
 
-import java.util.Set;
+import java.util.Collection;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity(name = "secao")
-public class Secao {
+public class Secao{
 
 	@Id
-	@Column(nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	@Column(nullable = false, unique = true)
 	private String titulo;
@@ -25,11 +23,8 @@ public class Secao {
 	@Column(nullable = false)
 	private String descricao;
 
-	@OneToMany(mappedBy = "secao", 
-			targetEntity = Noticia.class,
-			fetch = FetchType.EAGER,
-			cascade = CascadeType.ALL)
-	private Set<Noticia> noticias;
+	@OneToMany(mappedBy = "secao", cascade = CascadeType.ALL)
+	private Collection<Noticia> noticias;
 	
 	public long getId() {
 		return id;
@@ -55,11 +50,11 @@ public class Secao {
 		this.descricao = descricao;
 	}
 
-	public Set<Noticia> getNoticias() {
+	public Collection<Noticia> getNoticias() {
 		return noticias;
 	}
 
-	public void setNoticias(Set<Noticia> noticias) {
+	public void setNoticias(Collection<Noticia> noticias) {
 		this.noticias = noticias;
 	}
 	

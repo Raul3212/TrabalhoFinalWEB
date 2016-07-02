@@ -1,6 +1,6 @@
 package com.jornal.model;
 
-import java.util.Set;
+import java.util.Collection;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,8 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Entity(name = "usuario")
+import org.hibernate.annotations.Cascade;
+
+@Entity
+@Table(name = "usuario")
 public class Usuario {
 	
 	public static int LEITOR = 1;
@@ -19,7 +23,6 @@ public class Usuario {
 	public static int EDITOR = 3;
 	
 	@Id
-	@Column(nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
@@ -39,16 +42,15 @@ public class Usuario {
 	private int tipo;
 	
 	@OneToMany(mappedBy = "usuario", 
-			targetEntity = Noticia.class,
 			fetch = FetchType.EAGER,
-			cascade = CascadeType.ALL)
-	private Set<Noticia> noticias;
+			cascade = CascadeType.ALL,
+			orphanRemoval = true)
+	private Collection<Noticia> noticias;
 	
 	@OneToMany(mappedBy = "usuario",
-			targetEntity = Comentario.class,
-			fetch = FetchType.EAGER,
-			cascade = CascadeType.ALL)
-	private Set<Comentario> comentarios;
+			cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY)
+	private Collection<Comentario> comentarios;
 	
 	public long getId() {
 		return id;
@@ -98,20 +100,29 @@ public class Usuario {
 		this.tipo = tipo;
 	}
 
-	public Set<Noticia> getNoticias() {
+	public Collection<Noticia> getNoticias() {
 		return noticias;
 	}
 
-	public void setNoticias(Set<Noticia> noticias) {
+	public void setNoticias(Collection<Noticia> noticias) {
 		this.noticias = noticias;
 	}
 
-	public Set<Comentario> getComentarios() {
+	public Collection<Comentario> getComentarios() {
 		return comentarios;
 	}
 
-	public void setComentarios(Set<Comentario> comentarios) {
+	public void setComentarios(Collection<Comentario> comentarios) {
 		this.comentarios = comentarios;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Usuario){
+			Usuario user = (Usuario)obj;
+			return this.id == user.id;
+		}
+		return false;
 	}
 	
 }

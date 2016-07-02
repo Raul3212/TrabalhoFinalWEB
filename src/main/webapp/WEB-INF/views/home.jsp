@@ -25,8 +25,6 @@
 	  </div>
 	  <div class="top-bar-right">
 	    <ul class="menu">
-	      <li><input type="search" placeholder="Buscar"></li>
-	      <li><button type="button" class="button">Buscar</button></li>
 	      <li><a href="loginFormulario">Entrar</a></li>
 	    </ul>
 	  </div>
@@ -37,8 +35,7 @@
   			<c:forEach var="noticia" items="${noticias}">
 	  			<div class="callout clearfix">
 				 	<a href="mostraNoticia?id=${noticia.id}"><b>${noticia.titulo}</b></a><br/>
-				 	<i>${noticia.subtitulo}</i><br/>
-				 	<i>${noticia.data}</i> 		
+				 	<i>${noticia.subtitulo}</i><br/>	
 				</div>
 			</c:forEach>
   		</div>

@@ -25,7 +25,7 @@ public class RootController {
 	@RequestMapping("/")
 	public String home(HttpSession session, Model model){
 		List<Secao> secoes = secaoDao.findAll();
-		List<Noticia> noticias = noticiaDao.findAllOrderByData(); 
+		List<Noticia> noticias = noticiaDao.findAll(); 
 		session.setAttribute("secoes", secoes);
 		model.addAttribute("noticias", noticias);
 		return "home";

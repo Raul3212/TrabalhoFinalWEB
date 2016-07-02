@@ -24,7 +24,7 @@
 	  </div>
 	  <div class="top-bar-right">
 	    <ul class="menu">
-	      <li><a href="#">Gerenciar Notícias</a></li>
+	      <li><a href="gerenciarNoticias">Gerenciar Notícias</a></li>
 	      <li><a href="efetuarLogout">Sair</a></li>
 	    </ul>
 	  </div>
