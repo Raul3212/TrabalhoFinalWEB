@@ -1,6 +1,6 @@
 package com.jornal.controller;
 
-import java.io.Console;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jornal.dao.INoticiaDAO;
@@ -63,25 +62,57 @@ public class NoticiaController {
 	}
 	
 	@RequestMapping("/cadastrarNoticia")
-	public String cadastrarNoticia(Noticia noticia){
+	public String cadastrarNoticia(Noticia noticia, HttpSession session){
 		Secao secao = secaoDao.findOne(noticia.getSecaoId());
 		noticia.setSecao(secao);
-
 		Usuario usuario = usuarioDao.findOne(noticia.getUsuarioId());
 		noticia.setUsuario(usuario);
-		
+		noticia.setData(new Date());
 		noticiaDao.save(noticia);
+		usuario.getNoticias().add(noticia);
+		session.setAttribute("usuario", usuario);
+		return "redirect:gerenciarNoticias";
+	}
+		
+	@RequestMapping("/editarNoticiaFormulario")
+	public String editarNoticiaFormulario(long id, Model model){
+		Noticia noticia = noticiaDao.findOne(id);
+		model.addAttribute("noticia", noticia);
+		List<Secao> secoes = secaoDao.findAll();
+		model.addAttribute("secoes", secoes);
+		return "jornalista/editarNoticiaFormulario";
+	}
+	
+	@RequestMapping("/editarNoticia")
+	public String editarNoticia(Noticia noticia, HttpSession session){
+		Secao secao = secaoDao.findOne(noticia.getSecaoId());
+		noticia.setSecao(secao);
+		Usuario usuario = usuarioDao.findOne(noticia.getUsuarioId());
+		noticia.setUsuario(usuario);
+		noticia.setData(new Date());
+		noticiaDao.save(noticia);
+		usuario.getNoticias().remove(noticia);
+		usuario.getNoticias().add(noticia);
+		session.setAttribute("usuario", usuario);
 		return "redirect:gerenciarNoticias";
 	}
 	
 	@RequestMapping("/removerNoticia")
 	public String removerNoticia(long id, HttpSession session){
-		Usuario usuario = (Usuario)session.getAttribute("usuario");
 		Noticia dummy = new Noticia();
 		dummy.setId(id);
-		usuario.getNoticias().remove(dummy);
 		noticiaDao.delete(id);
-		return "redirect:gerenciarNoticias";
+		Usuario usuario = (Usuario)session.getAttribute("usuario");
+		if(usuario.getTipo() == Usuario.JORNALISTA){
+			usuario.getNoticias().remove(dummy);
+			session.setAttribute("usuario", usuario);
+			return "redirect:gerenciarNoticias";
+		}
+		else if(usuario.getTipo() == Usuario.EDITOR){
+			System.out.println("Etrou");
+			return "redirect:removerNoticias";
+		}
+		return "/";
 	}
 	
 }

@@ -25,8 +25,8 @@
 	  <div class="top-bar-right">
 	    <ul class="menu">
 	      <li><a href="gerenciarJornalistas">Gerenciar Jornalistas</a></li>
-	      <li><a href="#">Gerenciar Notícias</a></li>
-	      <li><a href="#">Gerenciar Seções</a></li>
+	      <li><a href="removerNoticias">Remover Notícias</a></li>
+	      <li><a href="gerenciarSecoes">Gerenciar Seções</a></li>
 	      <li><a href="efetuarLogout">Sair</a></li>
 	    </ul>
 	  </div>

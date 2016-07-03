@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jornal.dao.ISecaoDAO;
 import com.jornal.dao.IUsuarioDAO;
 import com.jornal.model.Usuario;
 import com.jornal.util.HashMD5;
@@ -16,7 +17,7 @@ public class UsuarioJornalistaController {
 
 	@Autowired
 	private IUsuarioDAO usuarioDao;
-	
+		
 	@RequestMapping("/inserirJornalistaFormulario")
 	public String inserirJornalistaFormulario(){
 		return "editor/inserirJornalistaFormulario";

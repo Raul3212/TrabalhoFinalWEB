@@ -43,12 +43,12 @@ public class Usuario {
 	
 	@OneToMany(mappedBy = "usuario", 
 			fetch = FetchType.EAGER,
-			cascade = CascadeType.ALL,
+			cascade = CascadeType.REMOVE,
 			orphanRemoval = true)
 	private Collection<Noticia> noticias;
 	
 	@OneToMany(mappedBy = "usuario",
-			cascade = CascadeType.ALL,
+			cascade = CascadeType.REMOVE,
 			fetch = FetchType.LAZY)
 	private Collection<Comentario> comentarios;
 	

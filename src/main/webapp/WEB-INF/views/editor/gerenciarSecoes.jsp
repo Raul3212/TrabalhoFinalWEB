@@ -33,29 +33,17 @@
 	</div>
 	
 	<div class="row">
-		<div class="medium-12 column">
-			<form method="post" action="inserirJornalista">
-				<label>Nome
-					<input type="text" name="nome">
-				</label>
-				<br/>
-				<label>E-mail
-					<input type="email" name="email">
-				</label>
-				<br/>
-				<label>Login
-					<input type="text" name="login">
-				</label>
-				<br/>
-				<label>Senha
-		  			<input type="password" aria-describedby="passwordHelpText" name="senha">
-				</label>
-				<br/>
-				<input type="hidden" value="2" name="tipo"/>
-				<label>
-					<input class="success buttom" type="submit" value="Cadastrar">
-				</label>
-			</form>
+		<a class="succes button float-right" href="inserirSecaoFormulario">Adicionar Seção</a>
+  		<div class="medium-12 column">
+			<c:forEach var="secao" items="${secoes}">
+				<div class="callout clearfix">
+			  		<a class="alert button float-right" href="removerSecao?id=${secao.id}">Remover</a>
+					<a class="warning button float-right" href="editarSecaoFormulario?id=${secao.id}">Editar</a>
+			  		<b>${secao.titulo}</b>
+					<br/>
+					<i>${secao.descricao}</i>
+				</div>
+			</c:forEach>
 		</div>
 	</div>	
 

@@ -34,24 +34,15 @@
 	
 	<div class="row">
 		<div class="medium-12 column">
-			<form method="post" action="inserirJornalista">
-				<label>Nome
-					<input type="text" name="nome">
+			<form method="post" action="inserirSecao">
+				<label>Titulo
+					<input type="text" name="titulo">
 				</label>
 				<br/>
-				<label>E-mail
-					<input type="email" name="email">
+				<label>Descrição
+					<input type="text" name="descricao">
 				</label>
 				<br/>
-				<label>Login
-					<input type="text" name="login">
-				</label>
-				<br/>
-				<label>Senha
-		  			<input type="password" aria-describedby="passwordHelpText" name="senha">
-				</label>
-				<br/>
-				<input type="hidden" value="2" name="tipo"/>
 				<label>
 					<input class="success buttom" type="submit" value="Cadastrar">
 				</label>

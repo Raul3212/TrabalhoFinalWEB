@@ -29,28 +29,27 @@ public class Noticia{
 	@Column(nullable = false)
 	private String subtitulo;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, length = 1000000000)
 	private String texto;
 	
 	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date data;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	
 	@Column(name = "usuario_id", updatable = false, insertable = false)
 	private long usuarioId;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "secao_id")
-	private Secao secao = null;
+	private Secao secao;
 	
 	@OneToMany(mappedBy = "noticia", 
 			fetch = FetchType.EAGER,
-			cascade = CascadeType.ALL,
-			orphanRemoval = true)
+			cascade = CascadeType.REMOVE)
 	private Collection<Comentario> comentarios;
 	
 	@Column(name = "secao_id", updatable = false, insertable = false)

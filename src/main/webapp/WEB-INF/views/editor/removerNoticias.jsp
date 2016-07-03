@@ -24,9 +24,7 @@
 	  </div>
 	  <div class="top-bar-right">
 	    <ul class="menu">
-	      <li><a href="gerenciarJornalistas">Gerenciar Jornalistas</a></li>
-	      <li><a href="removerNoticias">Remover Notícias</a></li>
-	      <li><a href="gerenciarSecoes">Gerenciar Seções</a></li>
+	      <li><a href="#">Gerenciar Notícias</a></li>
 	      <li><a href="efetuarLogout">Sair</a></li>
 	    </ul>
 	  </div>
@@ -34,31 +32,28 @@
 	
 	<div class="row">
 		<div class="medium-12 column">
-			<form method="post" action="inserirJornalista">
-				<label>Nome
-					<input type="text" name="nome">
-				</label>
-				<br/>
-				<label>E-mail
-					<input type="email" name="email">
-				</label>
-				<br/>
-				<label>Login
-					<input type="text" name="login">
-				</label>
-				<br/>
-				<label>Senha
-		  			<input type="password" aria-describedby="passwordHelpText" name="senha">
-				</label>
-				<br/>
-				<input type="hidden" value="2" name="tipo"/>
-				<label>
-					<input class="success buttom" type="submit" value="Cadastrar">
-				</label>
-			</form>
+			<br/>
+			<ul class="accordion" data-accordion data-allow-all-closed="true">
+				<c:forEach var="secao" items="${secoes}">
+					<li class="accordion-item" data-accordion-item>
+    					<a href="#" class="accordion-title">${secao.titulo}</a>
+    					<div class="accordion-content" data-tab-content>
+      						<c:forEach var="noticia" items="${secao.noticias}">
+								<div class="callout clearfix">
+			  						<a class="alert button float-right" href="removerNoticia?id=${noticia.id}">Remover</a>
+									<b>${noticia.titulo}</b>
+									<br/>
+									<i>${noticia.subtitulo}</i>
+								</div>
+							</c:forEach>
+      					</div>	
+  					</li>	
+				</c:forEach>
+			</ul>
+			
 		</div>
-	</div>	
-
+	</div>
+	
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>

@@ -32,11 +32,16 @@
     
     <div class="row">
   		<div class="medium-12 column">
+  			<br/>
   			<div class="callout clearfix">
-			 	<h2><b>${noticia.titulo}</b></h2><br/>
-			 	<i>${noticia.subtitulo}</i><br/>
-			 	<i>${noticia.data}</i><br>
-			 	<p>${noticia.texto}</p><br>
+			 	<center>
+			 		<h2><b>${noticia.titulo}</b></h2>
+			 		<i>${noticia.subtitulo}</i><br>
+			 		<p style="font-size:12px;">${noticia.data}<p/>
+			 	</center>
+			 	
+			 	<p align="justify">${noticia.texto}</p><br>
+			 	<p align="right"><i>por ${noticia.usuario.nome}</i></p>
 			 	<hr/>
 			 	<c:forEach var = "comentario" items="${comentarios}">
 			 		<b>${comentario.usuario.nome} - ${comentario.usuario.email}</b>

@@ -18,9 +18,6 @@
 	  <div class="top-bar-left">
 	    <ul class="dropdown menu" data-dropdown-menu>
 	      <li class="menu-text">${usuario.nome}</li>
-	      <c:forEach var="secao" items="${secoes}">
-	      	<li><a href="#" title="${secao.descricao}">${secao.titulo}</a></li>
-	      </c:forEach>
 	    </ul>
 	  </div>
 	  <div class="top-bar-right">
@@ -53,7 +50,6 @@
 					<textarea name="texto" rows="15"></textarea>
 				</label>
 				<br/>
-				<input type="hidden" value="<%=LocalDate.now().toString()%>" name="data" />
 				<input type="hidden" value="${usuario.id}" name="usuarioId"/>
 				<label>
 					<input class="success buttom" type="submit" value="Cadastrar">

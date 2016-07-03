@@ -25,7 +25,7 @@
 	  <div class="top-bar-right">
 	    <ul class="menu">
 	      <li><a href="gerenciarJornalistas">Gerenciar Jornalistas</a></li>
-	      <li><a href="removerNoticias">Remover Notícias</a></li>
+	      <li><a href="#">Gerenciar Notícias</a></li>
 	      <li><a href="gerenciarSecoes">Gerenciar Seções</a></li>
 	      <li><a href="efetuarLogout">Sair</a></li>
 	    </ul>
@@ -34,26 +34,18 @@
 	
 	<div class="row">
 		<div class="medium-12 column">
-			<form method="post" action="inserirJornalista">
-				<label>Nome
-					<input type="text" name="nome">
+			<form method="post" action="inserirSecao">
+				<label>Titulo
+					<input type="text" name="titulo" value="${secao.titulo}">
 				</label>
 				<br/>
-				<label>E-mail
-					<input type="email" name="email">
+				<label>Descrição
+					<input type="text" name="descricao" value="${secao.descricao}">
 				</label>
 				<br/>
-				<label>Login
-					<input type="text" name="login">
-				</label>
-				<br/>
-				<label>Senha
-		  			<input type="password" aria-describedby="passwordHelpText" name="senha">
-				</label>
-				<br/>
-				<input type="hidden" value="2" name="tipo"/>
+				<input type="hidden" name="id" value="${secao.id}"/> 
 				<label>
-					<input class="success buttom" type="submit" value="Cadastrar">
+					<input class="success buttom" type="submit" value="Salvar">
 				</label>
 			</form>
 		</div>

@@ -36,7 +36,7 @@
 			<c:forEach var="noticia" items="${noticias}">
 				<div class="callout clearfix">
 			  		<a class="alert button float-right" href="removerNoticia?id=${noticia.id}">Remover</a>
-					<a class="warning button float-right" href="#">Editar</a>
+					<a class="warning button float-right" href="editarNoticiaFormulario?id=${noticia.id}">Editar</a>
 			  		<b>${noticia.titulo}</b>
 					<br/>
 					<i>${noticia.subtitulo}</i>

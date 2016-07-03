@@ -32,6 +32,7 @@
     
     <div class="row">
   		<div class="medium-12 column">
+  			<br/>
   			<c:forEach var="noticia" items="${noticias}">
 	  			<div class="callout clearfix">
 				 	<a href="mostraNoticia?id=${noticia.id}"><b>${noticia.titulo}</b></a><br/>
