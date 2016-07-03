@@ -13,21 +13,7 @@
   </head>
   <body>
     
-    <div class="top-bar">
-	  <div class="top-bar-left">
-	    <ul class="dropdown menu" data-dropdown-menu>
-	      <li class="menu-text">${usuario.nome}</li>
-	      <c:forEach var="secao" items="${secoes}">
-	      	<li><a href="listarPorSecao?secaoId=${secao.id}" title="${secao.descricao}">${secao.titulo}</a></li>
-	      </c:forEach>
-	    </ul>
-	  </div>
-	  <div class="top-bar-right">
-	    <ul class="menu">
-	      <li><a href="efetuarLogout">Sair</a></li>
-	    </ul>
-	  </div>
-	</div>
+    <%@include file="nav_bar_menu.jsp"%>
     
     <div class="row">
   		<div class="medium-12 column">

@@ -12,20 +12,7 @@
 </head>
 <body>
 	
-	<div class="top-bar">
-	  <div class="top-bar-left">
-	    <ul class="dropdown menu" data-dropdown-menu>
-	      <li class="menu-text">QNews</li>
-	      <li><a href="/">Home</a></li>
-	    </ul>
-	  </div>
-	  <div class="top-bar-right">
-	    <ul class="menu">
-	      <li><button type="button" class="button">Buscar</button></li>
-	      <li><a href="loginFormulario">Entrar</a></li>
-	    </ul>
-	  </div>
-	</div>
+	<%@include file="nav_bar_menu.jsp" %>
 	
 	<div class="row">
   		<div class="medium-4 column">

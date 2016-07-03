@@ -14,19 +14,7 @@
   </head>
   <body>
     
-    <div class="top-bar">
-	  <div class="top-bar-left">
-	    <ul class="dropdown menu" data-dropdown-menu>
-	      <li class="menu-text">${usuario.nome}</li>
-	    </ul>
-	  </div>
-	  <div class="top-bar-right">
-	    <ul class="menu">
-	      <li><a href="gerenciarNoticias">Gerenciar Notícias</a></li>
-	      <li><a href="efetuarLogout">Sair</a></li>
-	    </ul>
-	  </div>
-	</div>
+    <%@include file="nav_bar_menu.jsp" %>
 	
 	<div class="row">
   		<div class="medium-12 column">
