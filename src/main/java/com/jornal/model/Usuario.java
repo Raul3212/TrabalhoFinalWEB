@@ -24,7 +24,7 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	@Column(nullable = false)
 	private String nome;
@@ -37,6 +37,9 @@ public class Usuario {
 	
 	@Column(nullable = false, updatable = false)
 	private String senha;
+	
+	@Column(name = "img_perfil")
+	private String imgPerfil;
 	
 	@Column(nullable = false)
 	private int tipo;
@@ -52,11 +55,16 @@ public class Usuario {
 			fetch = FetchType.LAZY)
 	private Collection<Comentario> comentarios;
 	
-	public long getId() {
+	@OneToMany(mappedBy = "comprador",
+			cascade = CascadeType.REMOVE,
+			fetch = FetchType.LAZY)
+	private Collection<Classificado> classificados;
+	
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -90,6 +98,14 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getImgPerfil() {
+		return imgPerfil;
+	}
+
+	public void setImgPerfil(String imgPerfil) {
+		this.imgPerfil = imgPerfil;
 	}
 
 	public int getTipo() {

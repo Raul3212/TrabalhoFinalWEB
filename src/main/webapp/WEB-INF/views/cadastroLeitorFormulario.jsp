@@ -16,7 +16,7 @@
 	
 	<div class="row">
   		<div class="medium-4 column">
-			<form method="post" action="cadastrarLeitor">
+			<form method="post" action="cadastrarLeitor" enctype="multipart/form-data">
 				<label>Nome
 					<input type="text" name="nome">
 				</label>
@@ -30,7 +30,11 @@
 				</label>
 				<br/>
 				<label>Senha
-		  			<input type="password" aria-describedby="passwordHelpText" name="senha">
+		  			<input type="password" name="senha">
+				</label>
+				<br/>
+				<label>Perfil
+		  			<input type="file" name="imagem">
 				</label>
 				<br/>
 				<input type="hidden" value="1" name="tipo"/>

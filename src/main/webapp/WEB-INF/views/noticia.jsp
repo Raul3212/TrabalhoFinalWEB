@@ -8,16 +8,14 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foundation for Sites</title>
-    <link rel="stylesheet" href="css/foundation.css">
-    <link rel="stylesheet" href="css/app.css">
-  </head>
-  <body>
+	<%@include file="css_include.jsp" %>    
+</head>
+<body>
     
     <%@include file="nav_bar_menu.jsp" %>
     
     <div class="row">
   		<div class="medium-12 column">
-  			<br/>
   			<div class="callout clearfix">
 			 	<center>
 			 		<h2><b>${noticia.titulo}</b></h2>

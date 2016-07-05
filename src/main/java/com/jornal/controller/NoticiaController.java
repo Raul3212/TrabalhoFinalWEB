@@ -39,6 +39,10 @@ public class NoticiaController {
 			Usuario usuario = (Usuario)session.getAttribute("usuario");
 			if(usuario.getTipo() == Usuario.LEITOR)
 				return "leitor/noticia";
+			else if (usuario.getTipo() == Usuario.JORNALISTA)
+				return "jornalista/noticia";
+			else if (usuario.getTipo() == Usuario.EDITOR)
+				return "editor/noticia";
 		}
 			
 		return "noticia";
@@ -52,6 +56,10 @@ public class NoticiaController {
 			Usuario usuario = (Usuario)session.getAttribute("usuario");
 			if(usuario.getTipo() == Usuario.LEITOR)
 				return "leitor/menu";
+			else if (usuario.getTipo() == Usuario.JORNALISTA)
+				return "jornalista/menu";
+			else if (usuario.getTipo() == Usuario.EDITOR)
+				return "editor/menu";
 		}
 		return "home";
 	}

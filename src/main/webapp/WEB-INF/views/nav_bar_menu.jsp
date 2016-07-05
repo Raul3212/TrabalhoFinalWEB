@@ -10,6 +10,7 @@
 	</div>
 	<div class="top-bar-right">
 		<ul class="menu">
+			<li><a href="listarClassificados">Classificados</a></li>
 	    	<li><a href="loginFormulario">Entrar</a></li>
 	    </ul>
 	</div>

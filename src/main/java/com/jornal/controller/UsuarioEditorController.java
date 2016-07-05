@@ -2,16 +2,14 @@ package com.jornal.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jornal.dao.ISecaoDAO;
+import com.jornal.dao.IClassificadoDAO;
 import com.jornal.dao.IUsuarioDAO;
-import com.jornal.model.Secao;
+import com.jornal.model.Classificado;
 import com.jornal.model.Usuario;
 
 @Controller
@@ -21,7 +19,7 @@ public class UsuarioEditorController {
 	private IUsuarioDAO usuarioDao;
 	
 	@Autowired
-	private ISecaoDAO secaoDAO;
+	private IClassificadoDAO classificadoDao;
 	
 	@RequestMapping("/gerenciarJornalistas")
 	public String gerenciarJornalistas(Model model){
@@ -31,7 +29,7 @@ public class UsuarioEditorController {
 	}
 	
 	@RequestMapping("/gerenciarSecoes")
-	public String gerenciarSecoes(HttpSession session){
+	public String gerenciarSecoes(){
 		return "editor/gerenciarSecoes";
 	}
 	

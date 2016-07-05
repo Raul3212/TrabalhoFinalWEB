@@ -15,7 +15,7 @@ public class Comentario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	@Column(nullable = false)
 	private String texto;
@@ -25,20 +25,20 @@ public class Comentario {
 	private Usuario usuario;
 	
 	@Column(name = "usuario_id", updatable = false, insertable = false)
-	private long usuarioId;
+	private Long usuarioId;
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "noticia_id")
 	private Noticia noticia;
 	
 	@Column(name = "noticia_id", updatable = false, insertable = false)
-	private long noticiaId;
+	private Long noticiaId;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -58,7 +58,7 @@ public class Comentario {
 		this.usuario = usuario;
 	}
 	
-	public long getUsuarioId() {
+	public Long getUsuarioId() {
 		return usuarioId;
 	}
 
@@ -66,7 +66,7 @@ public class Comentario {
 		return noticia;
 	}
 
-	public void setUsuarioId(long usuarioId) {
+	public void setUsuarioId(Long usuarioId) {
 		this.usuarioId = usuarioId;
 	}
 
@@ -74,11 +74,11 @@ public class Comentario {
 		this.noticia = noticia;
 	}
 
-	public long getNoticiaId() {
+	public Long getNoticiaId() {
 		return noticiaId;
 	}
 
-	public void setNoticiaId(long noticiaId) {
+	public void setNoticiaId(Long noticiaId) {
 		this.noticiaId = noticiaId;
 	}
 	

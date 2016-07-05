@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.jornal.model.Usuario;
+
 @Component
 public class RootInterceptor extends HandlerInterceptorAdapter{
 
@@ -14,8 +16,9 @@ public class RootInterceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 	
 		String uri = request.getRequestURI();
-		if(uri.endsWith("/") ||
+		if(uri.equals("/") ||
 		   uri.endsWith("loginFormulario") ||
+		   uri.endsWith("cadastroLeitorFormulario") ||
 		   uri.endsWith("home")){
 			return true;
 		}
