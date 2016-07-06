@@ -21,14 +21,14 @@ public class Comentario {
 	@Column(nullable = false)
 	private String texto;
 
-	@ManyToOne(optional = false, cascade = CascadeType.REMOVE)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	
 	@Column(name = "usuario_id", updatable = false, insertable = false)
 	private Long usuarioId;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.REMOVE)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "noticia_id")
 	private Noticia noticia;
 	

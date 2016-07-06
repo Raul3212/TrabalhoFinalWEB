@@ -39,19 +39,19 @@ public class Noticia{
 	@Temporal(TemporalType.DATE)
 	private Date data;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.REMOVE)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	
 	@Column(name = "usuario_id", updatable = false, insertable = false)
 	private Long usuarioId;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.REMOVE)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "secao_id")
 	private Secao secao;
 	
 	@OneToMany(mappedBy = "noticia", 
-			fetch = FetchType.EAGER,
+			fetch = FetchType.LAZY,
 			cascade = CascadeType.REMOVE)
 	private Collection<Comentario> comentarios;
 	

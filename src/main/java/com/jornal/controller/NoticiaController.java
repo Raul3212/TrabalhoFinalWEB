@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jornal.dao.IComentarioDAO;
 import com.jornal.dao.INoticiaDAO;
 import com.jornal.dao.ISecaoDAO;
 import com.jornal.dao.IUsuarioDAO;
@@ -26,6 +27,9 @@ public class NoticiaController {
 
 	@Autowired
 	private INoticiaDAO noticiaDao;
+	
+	@Autowired
+	private IComentarioDAO comentarioDao;
 	
 	@Autowired
 	private ISecaoDAO secaoDao;
@@ -139,7 +143,7 @@ public class NoticiaController {
 			session.setAttribute("secoes", secoes);
 			return "redirect:removerNoticias";
 		}
-		return "/";
+		return "redirect:/";
 	}
 	
 }

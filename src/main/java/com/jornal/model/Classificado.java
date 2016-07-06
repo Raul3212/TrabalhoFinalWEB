@@ -45,7 +45,7 @@ public class Classificado {
 	@Column(nullable = false)
 	private double valorIntervalo;
 	
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private Usuario comprador;
 	

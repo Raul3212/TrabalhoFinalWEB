@@ -15,7 +15,7 @@ public interface INoticiaDAO extends JpaRepository<Noticia, Long>{
 	@Query("select n from noticia as n order by n.data desc")
 	public List<Noticia> findAllOrderByData();
 	
-	@Query("select n from noticia as n where secao_id = :paramSecaoId")
+	@Query("select n from noticia as n where secao_id = :paramSecaoId order by n.data desc")
 	public List<Noticia> findBySecao(@Param("paramSecaoId")long secaoId);
 	
 }

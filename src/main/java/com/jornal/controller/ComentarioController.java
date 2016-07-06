@@ -3,6 +3,7 @@ package com.jornal.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jornal.dao.IComentarioDAO;
 import com.jornal.dao.INoticiaDAO;
@@ -24,13 +25,14 @@ public class ComentarioController {
 	private INoticiaDAO noticiaDao;
 	
 	@RequestMapping("/publicarComentario")
-	public String publicarComentario(Comentario comentario){
+	public String publicarComentario(Comentario comentario, RedirectAttributes redirectAttributes){
 		Noticia n = noticiaDao.findOne(comentario.getNoticiaId());
 		Usuario u = usuarioDao.findOne(comentario.getUsuarioId());
 		comentario.setNoticia(n);
 		comentario.setUsuario(u);
 		comentarioDao.save(comentario);
-		return "redirect:mostraNoticia?id=" + comentario.getNoticiaId();
+		redirectAttributes.addAttribute("id", comentario.getNoticiaId());
+		return "redirect:mostraNoticia";
 	}
 	
 }

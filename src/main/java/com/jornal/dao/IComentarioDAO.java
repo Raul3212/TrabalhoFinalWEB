@@ -7,5 +7,5 @@ import com.jornal.model.Comentario;
 
 @Repository
 public interface IComentarioDAO extends JpaRepository<Comentario, Long>{
-	
+
 }
