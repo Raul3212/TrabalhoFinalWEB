@@ -2,6 +2,7 @@ package com.jornal.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,12 +45,15 @@ public class Classificado {
 	@Column(nullable = false)
 	private double valorIntervalo;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "usuario_id")
 	private Usuario comprador;
 	
 	@Column(name = "usuario_id", updatable = false, insertable = false, nullable = true)
 	private Long usuarioId;
+	
+	@Column(updatable = false)
+	private String imgClassificado;
 	
 	public Long getId() {
 		return id;
@@ -138,5 +142,14 @@ public class Classificado {
 	public void setUsuarioId(Long usuarioId) {
 		this.usuarioId = usuarioId;
 	}
+	
+	public String getImgClassificado() {
+		return imgClassificado;
+	}
+
+	public void setImgClassificado(String imgClassificado) {
+		this.imgClassificado = imgClassificado;
+	}
+
 	
 }

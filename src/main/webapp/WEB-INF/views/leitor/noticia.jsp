@@ -21,14 +21,21 @@
 			 		<h2><b>${noticia.titulo}</b></h2>
 			 		<i>${noticia.subtitulo}</i><br>
 			 		<p style="font-size:12px;">${noticia.data}<p/>
+			 		<c:if test="${not empty noticia.imgNoticia}">
+			 			<img class="float-center thumbnail" src="<c:url value='/resources/img/noticia/${noticia.imgNoticia}'></c:url>"/>	
+			 		</c:if>
 			 	</center>
 			 	
 			 	<p align="justify">${noticia.texto}</p><br>
 			 	<p align="right"><i>por ${noticia.usuario.nome}</i></p>
-			 	<hr/>
 			 	<c:forEach var = "comentario" items="${comentarios}">
-			 		<b>${comentario.usuario.nome} - ${comentario.usuario.email}</b>
-			 		<p>${comentario.texto}</p>	
+				 	<div class="callout success">
+				 	<c:if test="${not empty comentario.usuario.imgPerfil}">
+						<img class="imgPerfil" src="<c:url value='/resources/img/perfil/${comentario.usuario.imgPerfil}'></c:url>"/>
+		    		</c:if>
+					<b>${comentario.usuario.nome} - ${comentario.usuario.email}</b>
+					<p>${comentario.texto}</p>	
+					</div>
 			 	</c:forEach>
 			 	<hr/>
 			 	<form method="post" action="publicarComentario">

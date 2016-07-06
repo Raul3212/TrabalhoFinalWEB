@@ -17,7 +17,7 @@
 	
 	<div class="row">
   		<div class="medium-12 column">
-			<form method="post" action="cadastrarNoticia">
+			<form method="post" action="cadastrarNoticia" enctype="multipart/form-data">
 				<label>Seção
 					<select name="secaoId">
 						<c:forEach var="secao" items="${secoes}">
@@ -31,6 +31,10 @@
 				<br/>
 				<label>Subtítulo
 					<input type="text" name="subtitulo" />
+				</label>
+				<br/>
+				<label>Imagem
+					<input type="file" name="imagem" />
 				</label>
 				<br/>
 				<label>Texto

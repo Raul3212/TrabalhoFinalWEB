@@ -29,10 +29,6 @@
 					<input type="text" name="login" value="${jornalista.login}">
 				</label>
 				<br/>
-				<label>Senha
-		  			<input type="password" aria-describedby="passwordHelpText" name="senha" value="${jornalista.senha}">
-				</label>
-				<br/>
 				<input type="hidden" value="${jornalista.id}" name="id"/>
 				<input type="hidden" value="2" name="tipo"/>
 				<label>

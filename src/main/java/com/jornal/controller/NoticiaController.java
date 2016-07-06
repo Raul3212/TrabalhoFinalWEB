@@ -3,12 +3,15 @@ package com.jornal.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jornal.dao.INoticiaDAO;
 import com.jornal.dao.ISecaoDAO;
@@ -16,6 +19,7 @@ import com.jornal.dao.IUsuarioDAO;
 import com.jornal.model.Noticia;
 import com.jornal.model.Secao;
 import com.jornal.model.Usuario;
+import com.jornal.util.FileUpload;
 
 @Controller
 public class NoticiaController {
@@ -29,6 +33,9 @@ public class NoticiaController {
 	@Autowired
 	private IUsuarioDAO usuarioDao;
 		
+	@Autowired
+	private ServletContext servletContext;
+	
 	@RequestMapping("/mostraNoticia")
 	public String mostraNoticia(long id, HttpSession session, Model model){
 		Noticia noticia = noticiaDao.findOne(id);
@@ -70,16 +77,27 @@ public class NoticiaController {
 	}
 	
 	@RequestMapping("/cadastrarNoticia")
-	public String cadastrarNoticia(Noticia noticia, HttpSession session){
+	public String cadastrarNoticia(Noticia noticia, 
+			@RequestParam(name="imagem", required=false) MultipartFile imagem, HttpSession session){
+		
 		Secao secao = secaoDao.findOne(noticia.getSecaoId());
 		noticia.setSecao(secao);
 		Usuario usuario = usuarioDao.findOne(noticia.getUsuarioId());
 		noticia.setUsuario(usuario);
 		noticia.setData(new Date());
+		
+		if(imagem != null && !imagem.isEmpty()){
+			String fileName = usuario.getNome() + "_" + usuario.getId() + noticia.getId() + imagem.getOriginalFilename();
+			String path = servletContext.getRealPath("/") + "/resources/img/noticia/" + fileName;
+			FileUpload.saveFile(path, imagem);
+			noticia.setImgNoticia(fileName);
+		}
+		
 		noticiaDao.save(noticia);
 		usuario.getNoticias().add(noticia);
 		session.setAttribute("usuario", usuario);
 		return "redirect:gerenciarNoticias";
+	
 	}
 		
 	@RequestMapping("/editarNoticiaFormulario")
@@ -117,7 +135,8 @@ public class NoticiaController {
 			return "redirect:gerenciarNoticias";
 		}
 		else if(usuario.getTipo() == Usuario.EDITOR){
-			System.out.println("Etrou");
+			List<Secao> secoes = secaoDao.findAll();
+			session.setAttribute("secoes", secoes);
 			return "redirect:removerNoticias";
 		}
 		return "/";

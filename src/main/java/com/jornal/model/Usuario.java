@@ -38,7 +38,7 @@ public class Usuario {
 	@Column(nullable = false, updatable = false)
 	private String senha;
 	
-	@Column(name = "img_perfil")
+	@Column(name = "img_perfil", updatable = false)
 	private String imgPerfil;
 	
 	@Column(nullable = false)

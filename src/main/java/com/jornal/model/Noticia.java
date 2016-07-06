@@ -32,18 +32,21 @@ public class Noticia{
 	@Column(nullable = false, length = 1000000000)
 	private String texto;
 	
+	@Column(updatable = false)
+	private String imgNoticia;
+
 	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date data;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	
 	@Column(name = "usuario_id", updatable = false, insertable = false)
 	private Long usuarioId;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "secao_id")
 	private Secao secao;
 	
@@ -143,6 +146,14 @@ public class Noticia{
 				return true;
 		}
 		return false;
+	}
+	
+	public String getImgNoticia() {
+		return imgNoticia;
+	}
+
+	public void setImgNoticia(String imgNoticia) {
+		this.imgNoticia = imgNoticia;
 	}
 	
 }

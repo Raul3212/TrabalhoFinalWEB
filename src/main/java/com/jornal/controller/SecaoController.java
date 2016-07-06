@@ -50,7 +50,7 @@ public class SecaoController {
 	}
 	
 	@RequestMapping("/editarSecaoFormulario")
-	public String inserirSecaoFormulario(long id, Model model){
+	public String editarSecaoFormulario(long id, Model model){
 		Secao secao = secaoDao.findOne(id);
 		model.addAttribute("secao", secao);
 		return "editor/editarSecaoFormulario";

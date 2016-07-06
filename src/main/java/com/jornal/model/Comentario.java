@@ -1,5 +1,6 @@
 package com.jornal.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,14 +21,14 @@ public class Comentario {
 	@Column(nullable = false)
 	private String texto;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	
 	@Column(name = "usuario_id", updatable = false, insertable = false)
 	private Long usuarioId;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "noticia_id")
 	private Noticia noticia;
 	
